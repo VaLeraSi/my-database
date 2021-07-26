@@ -39,7 +39,7 @@ CREATE TABLE teachers (
  	password_hash VARCHAR(100),
 	
     INDEX teachers_firstname_lastname_idx(firstname, lastname)
-) COMMENT 'преподаватели';
+) COMMENT 'РїСЂРµРїРѕРґР°РІР°С‚РµР»Рё';
 
 
 
@@ -77,7 +77,7 @@ CREATE TABLE students (
 	phone BIGINT unique,
 	
     INDEX students_firstname_lastname_idx(firstname, lastname)
-) COMMENT 'студенты';
+) COMMENT 'СЃС‚СѓРґРµРЅС‚С‹';
 
 DROP TABLE IF EXISTS `profiles`;
 CREATE TABLE `profiles` (
