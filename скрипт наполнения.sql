@@ -1,15 +1,10 @@
 
--- БД "online_school" представляет собой модель хранения данных для систем, аналогичных онлайн-курсам. 
--- Представленные таблицы хранят в себе информацию о платных курсах онлайн-школы, их стоимости, о студентах и студенческих группах, 
--- об учителях, предметах и расписании;
-
-
 
 DROP DATABASE IF EXISTS online_school;
 CREATE DATABASE online_school;
 USE online_school;
 
-DROP TABLE IF EXISTS `study_programs`; -- в этой таблице хранится информация об учебных программах: название, стоимость, продолжительность. Первичный ключ - id.
+DROP TABLE IF EXISTS `study_programs`;
 
 CREATE TABLE `study_programs` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -126,7 +121,7 @@ INSERT INTO `study_programs` (`id`, `name`, `cost`, `created_at`, `updated_at`, 
 
 
 
-DROP TABLE IF EXISTS `subjects`; -- таблица с названием предметов
+DROP TABLE IF EXISTS `subjects`; 
 
 CREATE TABLE `subjects` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -235,8 +230,7 @@ INSERT INTO `subjects` (`id`, `name_subject`) VALUES ('98', 'Qui quas repellendu
 INSERT INTO `subjects` (`id`, `name_subject`) VALUES ('99', 'Assumenda quo ipsum enim ut dicta aperiam quo face');
 INSERT INTO `subjects` (`id`, `name_subject`) VALUES ('100', 'Fuga officiis ut aut aliquid quia vitae.');
 
-DROP TABLE IF EXISTS `program_subjects`; -- в таблице представлена информация об учебных программах и входящих в них предметах 
-
+DROP TABLE IF EXISTS `program_subjects`; 
 CREATE TABLE `program_subjects` (
   `study_program_id` bigint(20) unsigned NOT NULL,
   `subject_id` bigint(20) unsigned NOT NULL,
@@ -349,7 +343,7 @@ INSERT INTO `program_subjects` (`study_program_id`, `subject_id`) VALUES ('100',
 
 
 
-DROP TABLE IF EXISTS `teachers`; -- таблица с информацией о преподавателях, первичный ключ - id, индекс - Фамилия Имя преподавателя 
+DROP TABLE IF EXISTS `teachers`; 
 
 CREATE TABLE `teachers` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -360,7 +354,7 @@ CREATE TABLE `teachers` (
   UNIQUE KEY `id` (`id`),
   UNIQUE KEY `email` (`email`),
   KEY `teachers_firstname_lastname_idx` (`firstname`,`lastname`)
-) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='учителя';
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='ГіГ·ГЁГІГҐГ«Гї';
 
 INSERT INTO `teachers` (`id`, `firstname`, `lastname`, `email`, `password_hash`) VALUES ('1', 'Napoleon', 'McCullough', 'guadalupe.bergnaum@example.net', '51317534aa9c6ebc240530b1a2896f81110a267f');
 INSERT INTO `teachers` (`id`, `firstname`, `lastname`, `email`, `password_hash`) VALUES ('2', 'Laurie', 'Kilback', 'eberge@example.net', '87b16521d060cca4c6a10710caf09de111b4938c');
@@ -466,7 +460,7 @@ INSERT INTO `teachers` (`id`, `firstname`, `lastname`, `email`, `password_hash`)
 
 
 
-DROP TABLE IF EXISTS `timetable`; -- таблица с расписанием предметов, два внешних ключа - id предмета и id преподавателя 
+DROP TABLE IF EXISTS `timetable`; 
 
 CREATE TABLE `timetable` (
   `subject_id` bigint(20) unsigned NOT NULL,
@@ -581,8 +575,7 @@ INSERT INTO `timetable` (`subject_id`, `teacher_id`, `start_time`, `finish_time`
 INSERT INTO `timetable` (`subject_id`, `teacher_id`, `start_time`, `finish_time`) VALUES ('100', '100', '1978-04-01 11:53:18', '1999-12-10 16:15:39');
 
 
-DROP TABLE IF EXISTS `classes`; -- таблица с информацией об учебных группах, первичный ключ - id, внешний ключ - id учебной программы 
-
+DROP TABLE IF EXISTS `classes`;
 CREATE TABLE `classes` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -695,8 +688,7 @@ INSERT INTO `classes` (`id`, `name`, `study_program_id`, `created_at`, `updated_
 INSERT INTO `classes` (`id`, `name`, `study_program_id`, `created_at`, `updated_at`) VALUES ('99', 'doloribus', '99', '2015-01-12 20:20:00', '2012-11-26 09:34:21');
 INSERT INTO `classes` (`id`, `name`, `study_program_id`, `created_at`, `updated_at`) VALUES ('100', 'eveniet', '100', '1980-04-25 14:45:13', '2002-05-21 19:36:47');
 
-DROP TABLE IF EXISTS `students`; -- основная информация о студентах, индекс - Фамилия Имя студента 
-
+DROP TABLE IF EXISTS `students`; 
 CREATE TABLE `students` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `firstname` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -708,7 +700,7 @@ CREATE TABLE `students` (
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `phone` (`phone`),
   KEY `students_firstname_lastname_idx` (`firstname`,`lastname`)
-) ENGINE=InnoDB AUTO_INCREMENT=201 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='студенты';
+) ENGINE=InnoDB AUTO_INCREMENT=201 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Г±ГІГіГ¤ГҐГ­ГІГ»';
 
 INSERT INTO `students` (`id`, `firstname`, `lastname`, `email`, `password_hash`, `phone`) VALUES ('101', 'Everardo', 'Hoppe', 'bettye47@example.net', '701b29728f659820d4f4eb86f257e6f811e69926', '1');
 INSERT INTO `students` (`id`, `firstname`, `lastname`, `email`, `password_hash`, `phone`) VALUES ('102', 'Casandra', 'Kerluke', 'ydaniel@example.org', '3d7377f94b91932c960933b0937bab3e3d8c152e', '109958');
@@ -764,8 +756,7 @@ INSERT INTO `students` (`id`, `firstname`, `lastname`, `email`, `password_hash`,
 INSERT INTO `students` (`id`, `firstname`, `lastname`, `email`, `password_hash`, `phone`) VALUES ('194', 'Fredy', 'Kris', 'wkemmer@example.net', '70ad4c4090e98450f76310178e6e57810fd592dd', '327');
 INSERT INTO `students` (`id`, `firstname`, `lastname`, `email`, `password_hash`, `phone`) VALUES ('198', 'Darrin', 'Funk', 'pgreen@example.com', '5db7fadec819b182cf108c044a29a374769f1b41', '5117048161');
 
-DROP TABLE IF EXISTS `profiles`; -- подробная информация о студентах, какой учебной программе они обучаются и в какой группе состоят 
-								 -- первичный ключ -  id студента, внешний ключ - учебная программа и студенческая группа 
+DROP TABLE IF EXISTS `profiles`;
 CREATE TABLE `profiles` (
   `student_id` bigint(20) unsigned NOT NULL,
   `gender` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -839,10 +830,10 @@ INSERT INTO `profiles` (`student_id`, `gender`, `birthday`, `created_at`, `homet
 
 ALTER TABLE `profiles` ADD CONSTRAINT fk_student_id
     FOREIGN KEY (student_id) REFERENCES students(id)
-    ON UPDATE CASCADE -- (значение по умолчанию)
-    ON DELETE RESTRICT; -- (значение по умолчанию)
+    ON UPDATE CASCADE 
+    ON DELETE RESTRICT; 
 
-DROP TABLE IF EXISTS `scores`; -- таблица с оценками студентов, внешний ключ - id студентов и id предметов 
+DROP TABLE IF EXISTS `scores`; 
 
 CREATE TABLE `scores` (
   `student_id` bigint(20) unsigned NOT NULL,
@@ -956,7 +947,7 @@ INSERT INTO `scores` (`student_id`, `subject_id`, `mark`) VALUES ('182', '99', 3
 INSERT INTO `scores` (`student_id`, `subject_id`, `mark`) VALUES ('183', '100', 5);
 
 
-DROP TABLE IF EXISTS `reviews`; -- таблица с отзывами студентов об учебной программе, первичный ключ - id, внешний ключ - id студента и id учебной программы 
+DROP TABLE IF EXISTS `reviews`; 
 
 CREATE TABLE `reviews` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
