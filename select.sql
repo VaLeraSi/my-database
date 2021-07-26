@@ -1,9 +1,8 @@
-
--- Группировка 
+-- Р“СЂСѓРїРїРёСЂРѕРІРєР° 
 
 use online_school;
 
-select name, MAX(cost) as 'средняя ценовая категория'
+select name, MAX(cost) as 'СЃСЂРµРґРЅСЏСЏ С†РµРЅРѕРІР°СЏ РєР°С‚РµРіРѕСЂРёСЏ'
 FROM study_programs
 where cost>=100000
 GROUP BY name;
@@ -18,7 +17,7 @@ from profiles
 inner join study_programs on study_programs.id=profiles.study_program_id;
 	
 
--- Вложенный запрос
+-- Р’Р»РѕР¶РµРЅРЅС‹Р№ Р·Р°РїСЂРѕСЃ
 
 use online_school;
 
@@ -27,7 +26,7 @@ from scores
 where mark>=5;
 
 
--- представления 
+-- РїСЂРµРґСЃС‚Р°РІР»РµРЅРёСЏ 
 -- 1
 
 use online_school;
@@ -45,7 +44,7 @@ as select body, evaluation from reviews;
 SELECT * FROM new_rev;
 
 
--- хранимые процедуры 
+-- С…СЂР°РЅРёРјС‹Рµ РїСЂРѕС†РµРґСѓСЂС‹ 
 
 use online_school;
 
@@ -62,7 +61,7 @@ delimiter ;
 
 call timetable_for_teacher();
 
--- триггеры 
+-- С‚СЂРёРіРіРµСЂС‹ 
 
 use online_school;
 
@@ -77,6 +76,8 @@ begin
 end//
 
 DELIMITER ;
+
+
 
 
 
